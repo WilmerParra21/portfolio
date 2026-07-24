@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# Vite
+.vite/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Cache
+.cache/
+.temp/
+.tmp/
+
+# Test coverage
+coverage/
+
+# Temporary assets
+tmp/
+
+# TypeScript
+tsconfig.node.tsbuildinfo
+
+# Vercel
+.vercel/

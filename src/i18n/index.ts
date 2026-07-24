@@ -1,0 +1,360 @@
+import { createI18n } from 'vue-i18n';
+
+export const messages = {
+  es: {
+    sections: {
+      about: 'Sobre mí',
+      curriculum: 'Currículum',
+      hero: 'Inicio',
+      projects: 'Proyectos',
+      services: 'Servicios',
+      technologies: 'Tecnologías',
+      tools: 'Herramientas',
+      contact: 'Contacto',
+    },
+    hero: {
+      eyebrow: 'Desarrollador Full-Stack',
+      badge: 'Disponible para proyectos',
+      title: {
+        part1: 'Wilmer Parra',
+        part2: 'Gómez',
+      },
+      description:
+        'Construyo productos digitales con código limpio, arquitectura sólida y foco en el usuario.',
+      primary: 'Ver proyectos',
+      secondary: 'Descargar CV',
+    },
+    curriculum: {
+      summary:
+        'Perfil profesional con foco en arquitectura, producto y entrega continua. Disponible para revisar o descargar.',
+      view: 'Ver PDF',
+      download: 'Descargar CV',
+      stats: {
+        experienceLabel: 'Experiencia',
+        projectsLabel: 'Proyectos',
+        focusLabel: 'Foco',
+        focusValue: 'Producto',
+      },
+      timelineTitle: 'Trayectoria',
+      items: {
+        0: 'Liderazgo técnico en equipos multidisciplinarios.',
+        1: 'Arquitecturas escalables y mantenibles.',
+        2: 'Entrega continua con calidad y pruebas.',
+      },
+    },
+    projects: {
+      intro: 'Una muestra de soluciones orientadas a negocio, con datos dinámicos desde Supabase y fallback local para mantener el sitio disponible.',
+      quickBrief: 'Brief rápido',
+      goToProject: 'Ir al proyecto {index}',
+      previousProject: 'Proyecto anterior',
+      nextProject: 'Siguiente proyecto',
+      carouselRegion: 'Carrusel de proyectos',
+      caseStudy: 'Caso de estudio',
+      repo: 'Repositorio',
+      demo: 'Demo',
+    },
+    technologies: {
+      intro: 'Tecnologías agrupadas por dominio para leer rápido dónde aporta cada herramienta.',
+      categoriesAria: 'Categorías de tecnología',
+      carouselHint: 'Mostrando {visible} stacks por vista de un total de {total}.',
+      previousPage: 'Página anterior',
+      nextPage: 'Siguiente página',
+      noDescription: 'Sin descripción disponible.',
+      goToPage: 'Ir a la página {page}',
+      frontend: 'Frontend',
+      backend: 'Backend',
+      web: 'WEB',
+      mobile: 'MOBILE',
+      desktop: 'DESKTOP',
+      automation: 'AUTOMATIZACIÓN',
+      devops: 'DevOps',
+    },
+    contact: {
+      titleLine1: 'Cuéntame sobre',
+      titleLine2: 'tu',
+      titleHighlight: 'proyecto',
+      helper: 'Comparte los detalles de tu idea, producto o sistema. Respondo con foco, contexto y una propuesta clara del siguiente paso.',
+      responseTime: 'Tiempo estimado de respuesta: 24 h',
+      name: 'Nombre',
+      email: 'Email',
+      serviceTypeAria: 'Tipo de servicio',
+      message: 'Mensaje',
+      success: '¡Mensaje enviado!',
+      error: 'Algo salió mal, intenta de nuevo.',
+      ready: 'Listo para enviar',
+      incomplete: 'Completa el formulario',
+      sending: 'Enviando…',
+      send: 'Enviar mensaje',
+    },
+    aiManifesto: {
+      sectionLabel: 'IA en el desarrollo',
+      titleLine1: 'La ventaja de la',
+      titleHighlight: 'IA',
+      titleLine2: 'en un programador',
+      lead: 'Con más de 5 años de experiencia, uso IA para acelerar trabajo, mejorar calidad, automatizar testing y generar código más robusto. No como reemplazo — como potenciador.',
+      features: {
+        product: {
+          title: 'Entiende el producto',
+          description: 'IA que comprende la arquitectura, el contexto del negocio y las restricciones técnicas del sistema.',
+        },
+        automation: {
+          title: 'Automatización real',
+          description: 'Pipelines inteligentes que reducen tareas manuales y optimizan flujos de trabajo existentes.',
+        },
+        auditable: {
+          title: 'Código auditable',
+          description: 'Implementaciones transparentes, documentadas y con tests. Sin cajas negras.',
+        },
+        native: {
+          title: 'Integración nativa',
+          description: 'IA integrada directamente en el stack del producto, no como un add-on externo.',
+        },
+      },
+    },
+    services: {
+      title: 'Servicios',
+      subtitle: 'Conjunto de capacidades para cubrir desde la idea hasta el producto en producción.',
+      mobile: {
+        title: 'Desarrollo de aplicaciones móviles',
+        description: 'Apps nativas y multiplataforma optimizadas para rendimiento, offline y experiencia móvil real.',
+        features: [
+          'Apps nativas Android/iOS',
+          'Apps multiplataforma con Flutter',
+          'Sincronización offline y cache local',
+          'Integración con sensores y servicios nativos',
+        ],
+      },
+      web: {
+        title: 'Aplicaciones y sitios web',
+        description: 'Landing pages, dashboards, portales y apps web responsivas enfocadas en conversión.',
+        features: [
+          'Landing pages de alto rendimiento',
+          'Dashboards administrativos',
+          'Apps web SPA con Vue y Astro',
+          'Optimización SEO y Core Web Vitals',
+        ],
+      },
+      apis: {
+        title: 'APIs REST e integraciones',
+        description: 'Diseño y despliegue de APIs, webhooks y conectores entre servicios para automatizar flujos.',
+        features: [
+          'Diseño de APIs REST',
+          'Webhooks y eventos en tiempo real',
+          'Integraciones SaaS y proveedores externos',
+          'Documentación Swagger/OpenAPI',
+        ],
+      },
+      stores: {
+        title: 'Gestión de Play Store y App Store',
+        description: 'Publicación, mantenimiento y optimización de listings en tiendas para apps móviles.',
+        features: [
+          'Preparación de assets y metadatos',
+          'Optimización de listings ASO',
+          'Seguimiento de releases y versiones',
+          'Soporte ante problemas de publicación',
+        ],
+      },
+      analytics: {
+        title: 'Análisis de datos',
+        description: 'Transformación de datos en información útil para decisiones y seguimiento de producto.',
+        features: [
+          'Dashboards con métricas de uso',
+          'Seguimiento de embudo y retención',
+          'Reportes automáticos',
+          'Visualización y storytelling con datos',
+        ],
+      },
+      databases: {
+        title: 'Gestor de Bases de Datos',
+        description: 'Diseño, administración y optimización de bases de datos para aplicaciones y sistemas.',
+        features: [
+          'Modelado relacional y NoSQL',
+          'Migraciones y backups',
+          'Optimización de consultas',
+          'Administración y mantenimiento',
+        ],
+      },
+    },
+  },
+  en: {
+    sections: {
+      curriculum: 'Curriculum',
+      projects: 'Projects',
+      technologies: 'Technologies',
+      tools: 'Tools',
+      contact: 'Contact',
+    },
+    hero: {
+      eyebrow: 'Full-Stack Developer',
+      badge: 'Available for projects',
+      title: {
+        part1: 'Wilmer Parra',
+        part2: 'Gómez',
+      },
+      description:
+        'I build digital products with clean code, solid architecture and a user-first mindset.',
+      primary: 'View projects',
+      secondary: 'Download CV',
+    },
+    curriculum: {
+      summary:
+        'Professional profile focused on architecture, product and continuous delivery. Available to review or download.',
+      view: 'View PDF',
+      download: 'Download CV',
+      stats: {
+        experienceLabel: 'Experience',
+        projectsLabel: 'Projects',
+        focusLabel: 'Focus',
+        focusValue: 'Product',
+      },
+      timelineTitle: 'Timeline',
+      items: {
+        0: 'Technical leadership in multidisciplinary teams.',
+        1: 'Scalable and maintainable architectures.',
+        2: 'Continuous delivery with quality and testing.',
+      },
+    },
+    projects: {
+      intro: 'A selection of business-oriented solutions, with dynamic data from Supabase and a local fallback to keep the site available.',
+      quickBrief: 'Quick brief',
+      goToProject: 'Go to project {index}',
+      previousProject: 'Previous project',
+      nextProject: 'Next project',
+      carouselRegion: 'Projects carousel',
+      caseStudy: 'Case study',
+      repo: 'Repository',
+      demo: 'Demo',
+    },
+    technologies: {
+      intro: 'Hand-picked stack for product, backend and mobile integration.',
+      categoriesAria: 'Technology categories',
+      carouselHint: 'Showing {visible} stacks per view out of {total}.',
+      previousPage: 'Previous page',
+      nextPage: 'Next page',
+      noDescription: 'No description available.',
+      goToPage: 'Go to page {page}',
+      frontend: 'Frontend',
+      backend: 'Backend',
+      web: 'WEB',
+      mobile: 'MOBILE',
+      desktop: 'DESKTOP',
+      automation: 'AUTOMATION',
+      devops: 'DevOps',
+    },
+    contact: {
+      titleLine1: 'Tell me about',
+      titleLine2: 'your',
+      titleHighlight: 'project',
+      helper: "Share the details of your idea, product or system. I'll reply with focus, context and a clear proposal for the next step.",
+      responseTime: 'Estimated response time: 24 h',
+      name: 'Name',
+      email: 'Email',
+      serviceTypeAria: 'Service type',
+      message: 'Message',
+      success: 'Message sent!',
+      error: 'Something went wrong, try again.',
+      ready: 'Ready to send',
+      incomplete: 'Complete the form',
+      sending: 'Sending…',
+      send: 'Send message',
+    },
+    aiManifesto: {
+      sectionLabel: 'AI in development',
+      titleLine1: 'The advantage of',
+      titleHighlight: 'AI',
+      titleLine2: 'for a developer',
+      lead: 'With over 5 years of experience, I use AI to speed up work, improve quality, automate testing and generate more robust code. Not as a replacement — as an amplifier.',
+      features: {
+        product: {
+          title: 'Understands the product',
+          description: 'AI that grasps the architecture, business context and technical constraints of the system.',
+        },
+        automation: {
+          title: 'Real automation',
+          description: 'Smart pipelines that reduce manual tasks and optimize existing workflows.',
+        },
+        auditable: {
+          title: 'Auditable code',
+          description: 'Transparent, documented implementations with tests. No black boxes.',
+        },
+        native: {
+          title: 'Native integration',
+          description: "AI integrated directly into the product's stack, not as an external add-on.",
+        },
+      },
+    },
+    services: {
+      title: 'Professional services',
+      subtitle: 'A set of capabilities covering everything from idea to production-ready product.',
+      mobile: {
+        title: 'Mobile app development',
+        description: 'Native and cross-platform apps built for performance, offline support, and real mobile UX.',
+        features: [
+          'Native Android/iOS apps',
+          'Cross-platform apps with Flutter',
+          'Offline sync and local cache',
+          'Native device integrations',
+        ],
+      },
+      web: {
+        title: 'Websites and web apps',
+        description: 'Landing pages, dashboards, portals and responsive web apps focused on conversion.',
+        features: [
+          'High-performance landing pages',
+          'Admin dashboards',
+          'SPAs with Vue and Astro',
+          'SEO and Core Web Vitals optimization',
+        ],
+      },
+      apis: {
+        title: 'REST APIs and integrations',
+        description: 'API design, webhooks and service connectors to automate business workflows.',
+        features: [
+          'REST API design',
+          'Webhooks and real-time events',
+          'SaaS integrations and external providers',
+          'Swagger/OpenAPI documentation',
+        ],
+      },
+      stores: {
+        title: 'Play Store and App Store management',
+        description: 'App store listing, maintenance and optimization for mobile applications.',
+        features: [
+          'Asset preparation and metadata',
+          'ASO listing optimization',
+          'Release and version tracking',
+          'Publication issue support',
+        ],
+      },
+      analytics: {
+        title: 'Data analytics',
+        description: 'Turning data into actionable insight for product and business decisions.',
+        features: [
+          'Usage metric dashboards',
+          'Funnel and retention tracking',
+          'Automated reports',
+          'Visualization and data storytelling',
+        ],
+      },
+      databases: {
+        title: 'Database management',
+        description: 'Database design, administration and optimization for applications and systems.',
+        features: [
+          'Relational and NoSQL modeling',
+          'Migrations and backups',
+          'Query optimization',
+          'Administration and maintenance',
+        ],
+      },
+    },
+  },
+};
+
+export const i18n = createI18n({
+  legacy: false,
+  locale: 'es',
+  fallbackLocale: 'es',
+  messages,
+});
+
+export default i18n;

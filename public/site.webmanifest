@@ -1,0 +1,25 @@
+{
+  "name": "DevsParra — Wilmer Parra Gómez",
+  "short_name": "DevsParra",
+  "description": "Desarrollador de software full stack. Productos digitales, sistemas internos y aplicaciones.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/profile.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
