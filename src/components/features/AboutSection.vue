@@ -6,11 +6,11 @@ const { t } = useI18n();
 const professionalPoints = [
   {
     title: 'Experiencia',
-    description: 'Más de 5 años construyendo productos web y móviles para entornos reales.',
+    description: 'Más de 5 años construyendo productos web y móviles.',
   },
   {
     title: 'Enfoque',
-    description: 'Arquitectura limpia, experiencia de usuario y código mantenible como base de cada entrega.',
+    description: 'Arquitectura limpia,enfocado en la experiencia de usuario y código escalable como base de cada entrega.',
   },
   {
     title: 'Metodología',
@@ -18,7 +18,7 @@ const professionalPoints = [
   },
   {
     title: 'Stack',
-    description: 'Tecnologías elegidas por el problema, no por la tendencia.',
+    description: 'Uso tecnologías en base a la mejor solución, no por la tendencia.',
   },
 ];
 </script>

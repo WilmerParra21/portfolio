@@ -1,8 +1,10 @@
 import type { ContactForm, Project, Technology } from '@/types/portfolio';
-import type { SupabaseClient } from '@supabase/supabase-js';
+import type { RealtimeChannel, SupabaseClient } from '@supabase/supabase-js';
 import { reactive, readonly, ref } from 'vue';
 
 const isLoading = ref(false);
+const realtimeEnabled = import.meta.env.VITE_ENABLE_REALTIME === 'true';
+let realtimeChannels: RealtimeChannel[] = [];
 
 const portfolioState = reactive({
   projects: [] as Project[],
@@ -12,7 +14,7 @@ const portfolioState = reactive({
 });
 
 type SocialLink = {
-  id: string;
+  id: string | number;
   url: string;
   name: string;
   image_url?: string;
@@ -21,7 +23,7 @@ type SocialLink = {
 };
 
 type ToolItem = {
-  id: string;
+  id: string | number;
   name: string;
   icon_url: string;
 };
@@ -69,6 +71,68 @@ async function fetchFromSupabase<T>(
   } catch (error) {
     console.warn(`[Supabase] Failed to fetch ${table}:`, error);
     return null;
+  }
+}
+
+async function subscribeToRealtime() {
+  const client = await createSupabase();
+  if (!client || !realtimeEnabled) return;
+
+  try {
+    const channel = client
+      .channel('portfolio-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'projects' },
+        (payload) => handleRealtimePayload('projects', payload)
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'technologies' },
+        (payload) => handleRealtimePayload('technologies', payload)
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'social_links' },
+        (payload) => handleRealtimePayload('social_links', payload)
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'tools' },
+        (payload) => handleRealtimePayload('tools', payload)
+      )
+      .subscribe();
+
+    realtimeChannels.push(channel);
+  } catch (error) {
+    console.warn('[Supabase] Realtime subscription failed:', error);
+  }
+}
+
+function handleRealtimePayload<T>(
+  table: 'projects' | 'technologies' | 'social_links' | 'tools',
+  payload: { eventType: string; new: T; old: T }
+) {
+  const collection = portfolioState[table];
+  const id = payload.new && (payload.new as { id?: string | number }).id;
+
+  if (payload.eventType === 'INSERT' && id !== undefined) {
+    const exists = collection.some((item) => (item as { id?: string | number }).id === id);
+    if (!exists) {
+      collection.push(payload.new as never);
+    }
+  } else if (payload.eventType === 'UPDATE' && id !== undefined) {
+    const index = collection.findIndex((item) => (item as { id?: string | number }).id === id);
+    if (index !== -1) {
+      collection[index] = payload.new as never;
+    } else {
+      collection.push(payload.new as never);
+    }
+  } else if (payload.eventType === 'DELETE' && id !== undefined) {
+    const index = collection.findIndex((item) => (item as { id?: string | number }).id === id);
+    if (index !== -1) {
+      collection.splice(index, 1);
+    }
   }
 }
 
@@ -226,6 +290,7 @@ loadSocialLinks();
 loadTechnologies();
 loadTools();
 loadProjects();
+subscribeToRealtime();
 
 export function useSupabase() {
   return {

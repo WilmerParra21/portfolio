@@ -11,9 +11,10 @@ const { submitContactForm } = useSupabase();
 const serviceTypes = [
   { key: 'web', label: 'Desarrollo Web' },
   { key: 'erp', label: 'Sistema / ERP' },
-  { key: 'mobile', label: 'App Móvil' },
-  { key: 'ai', label: 'Integración IA' },
+  { key: 'mobile', label: 'Desarrollo Móvil' },
+  { key: 'ai', label: 'Integración con IA' },
   { key: 'consulting', label: 'Consultoría Técnica' },
+  { key: 'stores', label: 'Gestión de Apps en las tiendas' },
   { key: 'other', label: 'Otro' },
 ];
 
@@ -59,6 +60,9 @@ const fieldTips = {
   message: 'Cuéntame objetivo, alcance y plazos. Mientras más contexto, mejor propuesta.',
 };
 
+const obscuredEmail = 'd2lsbWVycGFycmFnb21lekBnbWFpbC5jb20=';
+const decodedEmail = typeof atob === 'function' ? atob(obscuredEmail) : obscuredEmail;
+
 const isFormComplete = () =>
   form.name.length >= 2 && form.email.includes('@') && form.message.length >= 10;
 </script>
@@ -92,10 +96,10 @@ const isFormComplete = () =>
             <div class="flex items-center gap-3">
               <span class="status-dot-xs" />
               <a
-                href="mailto:contacto@wilmer.dev"
+                :href="'mailto:' + decodedEmail"
                 class="font-mono text-sm text-offWhite/70 hover:text-volt transition-colors tracking-[0.05em]"
               >
-                contacto@wilmer.dev
+                {{ decodedEmail }}
               </a>
             </div>
             <div class="flex items-center gap-3">

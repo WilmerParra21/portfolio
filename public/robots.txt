@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# Proteger archivos sensibles de indexación
+Disallow: /doc/
+Disallow: /images/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /tsconfig.json
+Disallow: /tailwind.config.ts
+Disallow: /vite.config.ts
+Disallow: /postcss.config.cjs
+
+# Sitemap
 Sitemap: https://DevsParra.com/sitemap.xml

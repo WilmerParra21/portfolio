@@ -43,7 +43,7 @@ export const messages = {
       },
     },
     projects: {
-      intro: 'Una muestra de soluciones orientadas a negocio, con datos dinámicos desde Supabase y fallback local para mantener el sitio disponible.',
+      intro: 'Una muestra de proyectos realizados o propios que solventan una solución real sistemática.',
       quickBrief: 'Brief rápido',
       goToProject: 'Ir al proyecto {index}',
       previousProject: 'Proyecto anterior',
@@ -54,7 +54,7 @@ export const messages = {
       demo: 'Demo',
     },
     technologies: {
-      intro: 'Tecnologías agrupadas por dominio para leer rápido dónde aporta cada herramienta.',
+      intro: 'Tecnologías agrupadas por segmento.',
       categoriesAria: 'Categorías de tecnología',
       carouselHint: 'Mostrando {visible} stacks por vista de un total de {total}.',
       previousPage: 'Página anterior',
@@ -75,7 +75,7 @@ export const messages = {
       titleHighlight: 'proyecto',
       helper: 'Comparte los detalles de tu idea, producto o sistema. Respondo con foco, contexto y una propuesta clara del siguiente paso.',
       responseTime: 'Tiempo estimado de respuesta: 24 h',
-      name: 'Nombre',
+      name: 'Nombre y apellido',
       email: 'Email',
       serviceTypeAria: 'Tipo de servicio',
       message: 'Mensaje',

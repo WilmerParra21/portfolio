@@ -123,11 +123,11 @@ const currentYear = new Date().getFullYear();
             Conectar
           </h3>
           <div class="flex flex-col gap-2.5">
-            <a href="mailto:contacto@wilmer.dev" class="group flex items-center gap-2 text-sm text-offWhite/70 transition-colors hover:text-volt">
+            <a href="mailto:wilmerparragomez@gmail.com" class="group flex items-center gap-2 text-sm text-offWhite/70 transition-colors hover:text-volt">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              contacto@wilmer.dev
+              wilmerparragomez@gmail.com
             </a>
             <div class="mt-1 flex items-center gap-2 text-sm text-offWhite/60">
               <span class="h-1.5 w-1.5 rounded-full bg-volt shadow-[0_0_8px_rgba(204,255,0,0.7)]" />
@@ -138,15 +138,17 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Bottom Bar -->
-      <div class="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center md:flex-row md:text-left">
-        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-offWhite/45">
-          © {{ currentYear }} · Desarrollado por
-          <span class="font-bold text-offWhite/70">DevsParra</span>
-        </p>
-        <a href="#top" class="group inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-offWhite/60 transition-colors hover:text-volt">
-          Volver al inicio
-          <span class="transition-transform group-hover:-translate-y-0.5">↑</span>
-        </a>
+      <div class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-center md:flex-row md:text-left">
+        <div class="flex flex-col gap-1">
+          <p class="font-mono text-[11px] tracking-[0.18em] text-offWhite/45">
+            © {{ currentYear }}
+            <span class="font-semibold text-offWhite/70">DevsParra</span>
+          </p>
+          <p class="font-mono text-[10px] tracking-[0.15em] text-offWhite/30">
+            Todos los derechos reservados.
+          </p>
+        </div>
+ 
       </div>
     </div>
   </footer>

@@ -34,8 +34,8 @@ function toggleMobileMenu() {
           </a>
         </nav>
 
-        <!-- Right side: CTA -->
-        <div class="flex items-center gap-4">
+        <!-- Right side: CTA + Mobile menu button -->
+        <div class="flex items-center gap-3">
           <!-- CTA Button -->
           <a
             href="#contact"
@@ -64,15 +64,37 @@ function toggleMobileMenu() {
 
       <!-- Mobile Menu -->
       <transition name="mobile-menu">
-        <nav v-if="mobileMenuOpen" class="mt-6 flex flex-col gap-4 rounded-2xl border border-white/10 bg-carbon/50 p-6 backdrop-blur-xl md:hidden">
-          <a href="#about" class="font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:text-volt" @click="toggleMobileMenu">
+        <nav
+          v-show="mobileMenuOpen"
+          class="absolute left-4 right-4 top-full mt-3 flex flex-col gap-1 rounded-2xl border border-white/10 bg-carbon/90 p-2 backdrop-blur-xl md:hidden"
+        >
+          <a
+            href="#about"
+            class="rounded-xl px-4 py-3 font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:bg-white/5 hover:text-volt"
+            @click="toggleMobileMenu"
+          >
             Sobre mí
           </a>
-          <a href="#projects" class="font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:text-volt" @click="toggleMobileMenu">
+          <a
+            href="#projects"
+            class="rounded-xl px-4 py-3 font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:bg-white/5 hover:text-volt"
+            @click="toggleMobileMenu"
+          >
             Proyectos
           </a>
-          <a href="#technologies" class="font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:text-volt" @click="toggleMobileMenu">
+          <a
+            href="#technologies"
+            class="rounded-xl px-4 py-3 font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:bg-white/5 hover:text-volt"
+            @click="toggleMobileMenu"
+          >
             Stack
+          </a>
+          <a
+            href="#contact"
+            class="rounded-xl px-4 py-3 font-mono text-sm uppercase tracking-wider text-offWhite/70 transition-colors hover:bg-white/5 hover:text-volt"
+            @click="toggleMobileMenu"
+          >
+            Contacto
           </a>
         </nav>
       </transition>
@@ -83,16 +105,17 @@ function toggleMobileMenu() {
 <style scoped>
 .mobile-menu-enter-active,
 .mobile-menu-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mobile-menu-enter-from {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px) scale(0.98);
 }
 
 .mobile-menu-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px) scale(0.98);
 }
 </style>

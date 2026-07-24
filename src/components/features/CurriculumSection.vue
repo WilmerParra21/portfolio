@@ -4,8 +4,9 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const curriculumPath = '/doc/cv.pdf';
+const curriculumPath = 'https://omozwoiykohxnvlcivra.supabase.co/storage/v1/object/public/portfolio/document/cv.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1';
 const showPdfModal = ref(false);
+const isPdfLoading = ref(false);
 
 // Interactive tilt for the illustration card
 const tiltX = ref(0);
@@ -30,10 +31,16 @@ function handleLeave() {
 
 function openPdfModal() {
   showPdfModal.value = true;
+  isPdfLoading.value = true;
 }
 
 function closePdfModal() {
   showPdfModal.value = false;
+  isPdfLoading.value = false;
+}
+
+function onPdfLoaded() {
+  isPdfLoading.value = false;
 }
 </script>
 
@@ -137,7 +144,17 @@ function closePdfModal() {
           </button>
         </div>
         <div class="pdf-modal-body">
-          <iframe :src="curriculumPath" class="pdf-iframe" title="CV PDF" />
+          <div v-if="isPdfLoading" class="pdf-loading">
+            <div class="pdf-spinner" />
+            <p class="pdf-loading-text">Cargando currículum...</p>
+          </div>
+          <iframe
+            v-show="!isPdfLoading"
+            :src="curriculumPath"
+            class="pdf-iframe"
+            title="CV PDF"
+            @load="onPdfLoaded"
+          />
         </div>
       </div>
     </div>
@@ -247,11 +264,12 @@ function closePdfModal() {
   inset: 0;
   z-index: 50;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: rgba(5, 5, 5, 0.85);
   backdrop-filter: blur(6px);
   padding: 1.5rem;
+  animation: pdfOverlayIn 0.3s ease;
 }
 
 .pdf-modal {
@@ -265,6 +283,7 @@ function closePdfModal() {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  animation: pdfModalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pdf-modal-header {
@@ -298,6 +317,7 @@ function closePdfModal() {
   flex: 1;
   min-height: 0;
   background: rgba(0, 0, 0, 0.35);
+  position: relative;
 }
 
 .pdf-iframe {
@@ -305,6 +325,62 @@ function closePdfModal() {
   height: 70vh;
   border: 0;
   display: block;
+}
+
+.pdf-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: rgba(20, 20, 15, 0.95);
+  z-index: 10;
+}
+
+.pdf-spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ccff00;
+  animation: pdfSpin 0.8s linear infinite;
+}
+
+.pdf-loading-text {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 247, 0.6);
+}
+
+@keyframes pdfSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pdfOverlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pdfModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 1024px) {

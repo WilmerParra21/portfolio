@@ -358,8 +358,7 @@ textarea:focus-visible {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* Try public image first, fall back to recovered dist image if public is missing */
-  background-image: url('/images/fondo.png'), url('/dist/images/fondo.png');
+  background-image: url('/images/fondo.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -380,7 +379,7 @@ textarea:focus-visible {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: url('/images/fondo.png');
+  background-image: url('/images/fondo.webp');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -1351,8 +1350,10 @@ textarea:focus-visible {
 
 /* Site header: sticky translucent bar over the global background */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 30;
   width: 100%;
   background: rgba(5, 5, 5, 0.72);
@@ -1363,6 +1364,16 @@ textarea:focus-visible {
 
 .site-header .site-header-inner {
   @apply mx-auto w-full max-w-7xl px-5 py-4 sm:px-8 sm:py-5 lg:px-10;
+}
+
+.site-cosmos {
+  padding-top: 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .site-cosmos {
+    padding-top: 5rem;
+  }
 }
 
 .dark .ai-tool-card {
@@ -1907,167 +1918,12 @@ textarea:focus-visible {
   animation: filmGrain 8s steps(1) infinite;
 }
 
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #CCFF00;
-}
-
 /* Efectos de líneas estructurales */
 .lines-grid {
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 24px 24px;
-}
-
-/* Transiciones suaves */
-* {
-  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-button, a {
-  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Labels técnicos estilo mono */
-.tech-label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #CCFF00;
-}
-
-.muted-label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Sección labels */
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.section-label-line {
-  width: 3rem;
-  height: 1px;
-  background: rgba(204, 255, 0, 0.3);
-}
-
-/* Texto gradiente */
-.gradient-volt {
-  background: linear-gradient(135deg, #CCFF00 0%, #A8FF78 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Botones */
-.btn-volt {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  overflow: hidden;
-  background: #CCFF00;
-  color: #050505;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.875rem 1.75rem;
-  border-radius: 9999px;
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), 
-              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              background-color 300ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-volt:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px -8px rgba(204, 255, 0, 0.55);
-}
-
-.btn-volt:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(204, 255, 0, 0.6), 0 0 0 4px #050505;
-}
-
-.btn-volt:active {
-  transform: translateY(0);
-}
-
-.btn-volt svg {
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-volt:hover svg {
-  transform: translateX(0.25rem);
-}
-
-.btn-border {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  overflow: hidden;
-  border: 1px solid rgba(204, 255, 0, 0.3);
-  color: #F5F5F7;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.875rem 1.75rem;
-  border-radius: 9999px;
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              color 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-border:hover {
-  transform: translateY(-2px);
-  border-color: #CCFF00;
-  color: #CCFF00;
-}
-
-.btn-border:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(204, 255, 0, 0.6), 0 0 0 4px #050505;
-}
-
-.btn-border:active {
-  transform: translateY(0);
-}
-
-.btn-border svg {
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-border:hover svg {
-  transform: translateX(-0.25rem);
 }
 
 .header-cta {
@@ -2081,20 +1937,6 @@ button, a {
   transform: translateY(-2px);
 }
 
-/* Glass terminal effect */
-.glass-terminal {
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-/* Actualizar glass-terminal para usar utilidades personalizadas */
-.glass-terminal {
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
-}
-
 /* Corregir body styles */
 body {
   margin: 0;
@@ -2103,312 +1945,5 @@ body {
   color: #F5F5F7;
 }
 
-/* Status dot pulsante */
-.status-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  background: #CCFF00;
-  border-radius: 9999px;
-  animation: pulseVolt 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulseVolt {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
 /* Ajustar cosmos layers para nueva paleta */
-.cosmos-layer-deep {
-  background:
-    radial-gradient(circle at 14% calc(16% + (var(--scroll-depth) * 0.012px)), rgba(204, 255, 0, 0.08), transparent 22rem),
-    radial-gradient(circle at 86% calc(10% + (var(--scroll-depth) * 0.008px)), rgba(20, 60, 20, 0.15), transparent 24rem),
-    linear-gradient(180deg, #050505 0%, #080808 48%, #050505 100%);
-  transform: translate3d(0, calc(var(--scroll-depth) * -0.025px), 0) scale(1.05);
-}
-
-.dark .cosmos-layer-deep {
-  background:
-    radial-gradient(circle at 14% calc(16% + (var(--scroll-depth) * 0.012px)), rgba(204, 255, 0, 0.08), transparent 23rem),
-    radial-gradient(circle at 86% calc(10% + (var(--scroll-depth) * 0.008px)), rgba(20, 60, 20, 0.2), transparent 24rem),
-    linear-gradient(180deg, #050505 0%, #080808 46%, #050505 100%);
-}
-
-.dark .site-cosmos {
-  background: #050505;
-}
-
-.site-cosmos.fx-enabled {
-  background: #050505;
-}
-
 /* Nuevas utilidades para el diseño */
-.grid-vertical-lines {
-  position: relative;
-}
-
-.grid-vertical-lines::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(90deg, 
-    transparent 25%, 
-    rgba(255, 255, 255, 0.03) 25%, 
-    rgba(255, 255, 255, 0.03) 26%, 
-    transparent 26%,
-    transparent 50%, 
-    rgba(255, 255, 255, 0.03) 50%, 
-    rgba(255, 255, 255, 0.03) 51%, 
-    transparent 51%,
-    transparent 75%, 
-    rgba(255, 255, 255, 0.03) 75%, 
-    rgba(255, 255, 255, 0.03) 76%, 
-    transparent 76%
-  );
-  pointer-events: none;
-}
-
-/* Efectos hover para tarjetas */
-.hover-lift {
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px);
-}
-
-/* Bordes decorativos */
-.border-accent {
-  position: relative;
-}
-
-.border-accent::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-  border: 1px solid #CCFF00;
-  opacity: 0;
-  transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-}
-
-.border-accent:hover::before {
-  opacity: 0.3;
-}
-
-/* Animación de carga para grid */
-.grid-fade-in {
-  animation: gridFadeIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-@keyframes gridFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Efecto de overlay para imágenes */
-.image-overlay {
-  position: relative;
-}
-
-.image-overlay::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, 
-    rgba(5, 5, 5, 0) 0%,
-    rgba(5, 5, 5, 0.7) 70%,
-    rgba(5, 5, 5, 0.9) 100%
-  );
-  pointer-events: none;
-}
-
-/* Utilidades para texto */
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Ajustar el section-shell para nuevo diseño */
-.section-shell {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 72rem;
-  padding: 3rem 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .section-shell {
-    padding: 4rem 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-shell {
-    padding: 5rem 2.5rem;
-  }
-}
-
-/* Ajustar botones existentes */
-.icon-button {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(18, 18, 20, 0.5);
-  color: #F5F5F7;
-  transition: all 0.2s ease;
-}
-
-.icon-button:hover {
-  border-color: rgba(204, 255, 0, 0.3);
-  color: #CCFF00;
-}
-
-/* Ajustar glass-panel para nueva paleta */
-.glass-panel {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(18, 18, 20, 0.5);
-  backdrop-filter: blur(14px);
-}
-
-/* Actualizar clases de texto cyan/neon para volt */
-.cyan-text {
-  color: #CCFF00;
-  text-shadow: 0 0 18px rgba(204, 255, 0, 0.18);
-}
-
-/* Ajustar animaciones existentes para nueva paleta */
-@keyframes pulseVolt {
-  0%, 100% { box-shadow: 0 0 18px rgba(204, 255, 0, 0.28); }
-  50% { box-shadow: 0 0 34px rgba(204, 255, 0, 0.5); }
-}
-
-.animate-pulseVolt {
-  animation: pulseVolt 2s ease-in-out infinite;
-}
-
-/* Ajustar transiciones para el nuevo diseño */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  transition-duration: 300ms;
-}
-
-/* Scroll suave mejorado */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-/* Utilidades personalizadas para bordes y fondos con opacidad */
-.border-white-3 {
-  border-color: rgba(255, 255, 255, 0.03);
-}
-
-.border-white-4 {
-  border-color: rgba(255, 255, 255, 0.04);
-}
-
-.border-white-6 {
-  border-color: rgba(255, 255, 255, 0.06);
-}
-
-.border-white-8 {
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.bg-white-2 {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-.bg-white-5 {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.bg-white-10 {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.bg-white-20 {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.bg-white-40 {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-.bg-carbon-30 {
-  background-color: rgba(18, 18, 20, 0.3);
-}
-
-.bg-carbon-50 {
-  background-color: rgba(18, 18, 20, 0.5);
-}
-
-.bg-obsidian-80 {
-  background-color: rgba(5, 5, 5, 0.8);
-}
-
-.bg-obsidian-95 {
-  background-color: rgba(5, 5, 5, 0.95);
-}
-
-.bg-volt-5 {
-  background-color: rgba(204, 255, 0, 0.05);
-}
-
-.bg-volt-30 {
-  background-color: rgba(204, 255, 0, 0.3);
-}
-
-/* Texto con opacidad */
-.text-white-50 {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.text-white-60 {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.text-white-70 {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.text-white-80 {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.text-white-90 {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Efectos hover para utilidades personalizadas */
-.hover\:border-volt-30:hover {
-  border-color: rgba(204, 255, 0, 0.3);
-}
-
-.hover\:bg-white-40:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-/* Actualizar glass-terminal para usar utilidades personalizadas */
-.glass-terminal {
-  @apply backdrop-blur-md border border-white-6 bg-white-2;
-}

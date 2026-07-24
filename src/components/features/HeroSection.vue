@@ -57,7 +57,7 @@ const socialLinks = computed(() =>
   <section id="top" class="relative flex min-h-[100svh] flex-col overflow-hidden bg-obsidian">
     <!-- Background texture: metallic marble -->
     <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-[url('/images/hero.png')] bg-cover bg-center bg-no-repeat opacity-[0.42]" />
+      <div class="absolute inset-0 bg-[url('/images/hero.webp')] bg-cover bg-center bg-no-repeat opacity-[0.42]" />
       <div class="absolute inset-0 bg-[radial-gradient(90%_80%_at_28%_45%,transparent_0%,rgba(5,5,5,0.45)_55%,rgba(5,5,5,0.88)_100%)]" />
       <div class="absolute inset-0 bg-gradient-to-r from-transparent via-obsidian/35 to-obsidian/75" />
       <div class="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-transparent to-obsidian" />
@@ -69,7 +69,7 @@ const socialLinks = computed(() =>
         <div class="flex w-full flex-col items-center gap-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:gap-10 lg:gap-14">
 
           <!-- Left: Profile photo -->
-          <div class="flex w-full max-w-[160px] shrink-0 sm:max-w-[220px] md:max-w-[300px] lg:max-w-[340px]">
+          <div class="flex w-full max-w-[180px] shrink-0 sm:max-w-[240px] md:max-w-[300px] lg:max-w-[340px]">
             <div class="relative w-full">
               <!-- Ambient green glow, biased to the right / bottom -->
               <div class="absolute inset-0 -m-6 rounded-full bg-[radial-gradient(60%_60%_at_72%_65%,rgba(204,255,0,0.35)_0%,rgba(204,255,0,0.08)_45%,transparent_75%)] blur-[45px]" />
@@ -78,12 +78,17 @@ const socialLinks = computed(() =>
               <div class="relative aspect-square w-full rounded-full bg-[conic-gradient(from_0deg_at_50%_50%,rgba(204,255,0,0.3)_0deg,#CCFF00_85deg,#CCFF00_170deg,rgba(204,255,0,0.28)_235deg,rgba(255,255,255,0.03)_290deg,rgba(204,255,0,0.14)_335deg,rgba(204,255,0,0.3)_360deg)] p-[3px] shadow-[0_0_40px_rgba(204,255,0,0.22)]">
                 <!-- Inner dark border -->
                 <div class="h-full w-full rounded-full bg-gradient-to-br from-gray-800 via-gray-900 to-black p-[5px]">
-                  <img
-                    src="/images/profile.png"
-                    alt="Wilmer Parra Gómez"
-                    class="h-full w-full rounded-full object-cover"
-                    loading="eager"
-                  />
+                  <picture>
+                    <source srcset="/images/profile.webp" type="image/webp" />
+                    <img
+                      src="/images/profile.png"
+                      alt="Wilmer Parra Gómez"
+                      class="h-full w-full rounded-full object-cover"
+                      loading="eager"
+                      width="340"
+                      height="340"
+                    />
+                  </picture>
                 </div>
               </div>
             </div>
