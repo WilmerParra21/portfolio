@@ -266,6 +266,42 @@ async function loadProjects() {
 }
 
 async function submitContactForm(payload: ContactForm): Promise<void> {
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const useEdgeFunction = supabaseUrl && import.meta.env.VITE_ENABLE_SUPABASE === 'true';
+
+  if (useEdgeFunction) {
+    try {
+      const response = await fetch(
+        `${supabaseUrl}/functions/v1/verify-turnstile`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY || '',
+          },
+          body: JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            subject: payload.subject,
+            message: payload.message,
+            service_type: payload.service_type,
+            turnstile_token: payload.turnstile_token,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Error en el envío' }));
+        throw new Error(errorData.error || 'Error en el envío');
+      }
+
+      return;
+    } catch (error) {
+      console.warn('[Supabase Edge Function] Contact form submission failed:', error);
+      throw error;
+    }
+  }
+
   const client = await createSupabase();
   if (client) {
     try {
@@ -276,12 +312,14 @@ async function submitContactForm(payload: ContactForm): Promise<void> {
           subject: payload.subject,
           message: payload.message,
           service_type: payload.service_type,
+          turnstile_token: payload.turnstile_token,
         },
       ]);
       if (error) throw error;
       return;
     } catch (error) {
       console.warn('[Supabase] Contact form submission failed:', error);
+      throw error;
     }
   }
 }

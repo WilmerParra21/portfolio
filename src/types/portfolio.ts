@@ -31,4 +31,5 @@ export interface ContactForm {
   subject?: string;
   message: string;
   service_type?: string;
+  turnstile_token?: string;
 }

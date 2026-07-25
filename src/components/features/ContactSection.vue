@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref, onMounted, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { useSupabase } from '../../composables/useSupabase';
+import { useTurnstile } from '../../composables/useTurnstile';
 import type { ContactForm } from '../../types/portfolio';
 
 const { t } = useI18n();
 const { submitContactForm } = useSupabase();
+const { siteKey, turnstileToken, turnstileWidgetId, onTurnstileSuccess, onTurnstileError, onTurnstileExpired, resetTurnstile } = useTurnstile();
 
 const serviceTypes = [
   { key: 'web', label: 'Desarrollo Web' },
@@ -28,26 +30,56 @@ const form = reactive<ContactForm>({
 const selectedServiceType = ref<string>('');
 const status = ref<'idle' | 'success' | 'error'>('idle');
 const isSubmitting = ref(false);
+const websiteCheck = ref('');
+
+const submissionTimestamps = ref<number[]>([]);
+const MAX_SUBMISSIONS_PER_MINUTE = 3;
 
 function selectService(key: string) {
   selectedServiceType.value = selectedServiceType.value === key ? '' : key;
   form.subject = serviceTypes.find((s) => s.key === key)?.label ?? '';
 }
 
+function isRateLimited(): boolean {
+  const now = Date.now();
+  const oneMinuteAgo = now - 60 * 1000;
+  submissionTimestamps.value = submissionTimestamps.value.filter(
+    (timestamp) => timestamp > oneMinuteAgo
+  );
+  return submissionTimestamps.value.length >= MAX_SUBMISSIONS_PER_MINUTE;
+}
+
 async function handleSubmit() {
+  if (websiteCheck.value.trim() !== '') {
+    status.value = 'error';
+    return;
+  }
+
+  if (isRateLimited()) {
+    status.value = 'error';
+    return;
+  }
+
   status.value = 'idle';
   isSubmitting.value = true;
+  submissionTimestamps.value.push(Date.now());
 
   try {
-    await submitContactForm({ ...form, service_type: selectedServiceType.value || undefined });
+    await submitContactForm({
+      ...form,
+      service_type: selectedServiceType.value || undefined,
+      turnstile_token: turnstileToken.value || undefined,
+    });
     form.name = '';
     form.email = '';
     form.subject = '';
     form.message = '';
     selectedServiceType.value = '';
     status.value = 'success';
+    resetTurnstile();
   } catch {
     status.value = 'error';
+    resetTurnstile();
   } finally {
     isSubmitting.value = false;
   }
@@ -65,6 +97,29 @@ const decodedEmail = typeof atob === 'function' ? atob(obscuredEmail) : obscured
 
 const isFormComplete = () =>
   form.name.length >= 2 && form.email.includes('@') && form.message.length >= 10;
+
+function initTurnstile() {
+  if (typeof window === 'undefined' || !window.turnstile || !siteKey) return;
+
+  const container = document.getElementById('turnstile-container');
+  if (!container) return;
+
+  if (turnstileWidgetId.value) {
+    window.turnstile.reset(turnstileWidgetId.value);
+  }
+
+  turnstileWidgetId.value = window.turnstile.render(container, {
+    sitekey: siteKey,
+    callback: onTurnstileSuccess,
+    'error-callback': onTurnstileError,
+    'expired-callback': onTurnstileExpired,
+    theme: 'dark',
+  });
+}
+
+onMounted(() => {
+  initTurnstile();
+});
 </script>
 
 <template>
@@ -120,6 +175,25 @@ const isFormComplete = () =>
         <div>
           <div class="contact-card contact-card-glow">
             <form class="grid gap-4" @submit.prevent="handleSubmit">
+              <!-- Honeypot anti-spam (invisible to humans) -->
+              <div class="contact-honeypot" aria-hidden="true">
+                <label for="contact-website">Website</label>
+                <input
+                  id="contact-website"
+                  v-model="websiteCheck"
+                  class="contact-input"
+                  name="website"
+                  type="text"
+                  autocomplete="off"
+                  tabindex="-1"
+                />
+              </div>
+
+              <!-- Cloudflare Turnstile -->
+              <div v-if="siteKey" class="turnstile-wrapper">
+                <div id="turnstile-container" />
+              </div>
+
               <!-- Name + Email inline -->
               <div class="grid gap-4 sm:grid-cols-2">
                 <div class="contact-field">
@@ -348,6 +422,19 @@ const isFormComplete = () =>
   line-height: 1;
   cursor: help;
   user-select: none;
+}
+
+.contact-honeypot {
+  display: none;
+}
+
+.turnstile-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.turnstile-wrapper :deep(cf-turnstile) {
+  margin: 0;
 }
 
 .tooltip-pop {
