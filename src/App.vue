@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 import AboutSection from '@/components/features/AboutSection.vue';
 import ContactSection from '@/components/features/ContactSection.vue';
@@ -62,6 +63,9 @@ onMounted(() => {
     animationsEnabled.value = false;
   }
   motionMedia.addEventListener('change', handleReducedMotionChange);
+
+  // Initialize Vercel Speed Insights
+  injectSpeedInsights();
 });
 
 onUnmounted(() => {
