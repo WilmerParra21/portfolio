@@ -4,9 +4,11 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const curriculumPath = 'https://omozwoiykohxnvlcivra.supabase.co/storage/v1/object/public/portfolio/document/cv.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1';
+const curriculumPath = import.meta.env.PUBLIC_CV_URL;
 const showPdfModal = ref(false);
 const isPdfLoading = ref(false);
+const avatar1Src = '/images/avatar.jpg';
+const avatar2Src = '/images/avatar2.jpg';
 
 // Interactive tilt for the illustration card
 const tiltX = ref(0);
@@ -107,14 +109,14 @@ function onPdfLoaded() {
 
           <div class="cv-image-stack">
             <img
-              src="/images/avatar2.jpg"
+              :src="avatar2Src"
               alt=""
               class="cv-card-img cv-card-img-secondary"
               loading="lazy"
               decoding="async"
             />
             <img
-              src="/images/avatar.jpg"
+              :src="avatar1Src"
               alt="Ilustración de desarrollo de software"
               class="cv-card-img cv-card-img-primary"
               loading="lazy"

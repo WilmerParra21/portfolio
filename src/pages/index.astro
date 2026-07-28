@@ -1,0 +1,10 @@
+---
+export const prerender = false;
+
+import Layout from '../layouts/Base.astro';
+import App from '../components/App.vue';
+---
+
+<Layout title="Wilmer Parra Gómez — Desarrollador Full Stack | DevsParra">
+  <App client:only="vue" />
+</Layout>

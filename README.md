@@ -4,12 +4,12 @@
 
 **Desarrollador de Software Full Stack · DevsParra**
 
-Portafolio profesional construido con Vue 3, TypeScript y Tailwind CSS.
+Portafolio profesional construido con Astro, Vue 3, TypeScript y Tailwind CSS.
 Diseño limpio, multilingüe (español / inglés) y optimizado para rendimiento y SEO.
 
-[![Vue](https://img.shields.io/badge/Vue-3.2-42b883?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![Astro](https://img.shields.io/badge/Astro-4.x-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
+[![Vue](https://img.shields.io/badge/Vue-3.x-42b883?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-4.4-646cff?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-2.31-3ecf8e?logo=supabase&logoColor=white)](https://supabase.com/)
 
@@ -23,8 +23,8 @@ Diseño limpio, multilingüe (español / inglés) y optimizado para rendimiento 
 
 - 🎨 **Diseño moderno y responsivo** — interfaz cuidada con modo oscuro, adaptada a móvil, tablet y escritorio.
 - 🌍 **Multilingüe** — soporte para español e inglés con `vue-i18n`.
-- ⚡ **Rendimiento** — construido con Vite para arranques y compilaciones rápidas.
-- 🔍 **SEO listo** — metadatos Open Graph, Twitter Cards, `sitemap.xml`, `robots.txt` y datos estructurados.
+- ⚡ **Rendimiento** — construido con Astro e islas Vue para máxima velocidad y SEO.
+- 🔍 **SEO listo** — metadatos Open Graph, Twitter Cards, `robots.txt` y datos estructurados JSON-LD.
 - 🧩 **Arquitectura modular** — componentes organizados por capas (layout / features) y tipado estricto con TypeScript.
 - 🗄️ **Datos flexibles** — integración opcional con Supabase, con datos de ejemplo incluidos para funcionar sin backend.
 
@@ -34,7 +34,7 @@ Diseño limpio, multilingüe (español / inglés) y optimizado para rendimiento 
 
 | Área | Herramientas |
 |------|--------------|
-| **Frontend** | Vue 3, TypeScript, Tailwind CSS |
+| **Frontend** | Astro, Vue 3, TypeScript, Tailwind CSS |
 | **Build** | Vite, PostCSS, Autoprefixer |
 | **i18n** | vue-i18n |
 | **Backend (opcional)** | Supabase |
@@ -46,20 +46,24 @@ Diseño limpio, multilingüe (español / inglés) y optimizado para rendimiento 
 
 ```
 portfolio/
-├── public/                 # Recursos estáticos (imágenes, íconos, sitemap, robots)
+├── astro.config.mjs
+├── public/                 # Recursos estáticos (imágenes, íconos, robots, manifest)
 │   └── images/
 ├── src/
+│   ├── layouts/            # Layout base HTML (Base.astro)
+│   ├── pages/              # Rutas del sitio (index.astro)
 │   ├── components/
 │   │   ├── layout/         # Encabezado y pie de página
 │   │   └── features/       # Secciones: Hero, About, Proyectos, Tecnologías, Contacto...
-│   ├── composables/        # Lógica reutilizable (useSupabase)
+│   ├── composables/        # Lógica reutilizable (useSupabase, useTurnstile)
 │   ├── i18n/               # Configuración de idiomas
 │   ├── types/              # Definiciones de TypeScript
-│   ├── App.vue             # Componente raíz
-│   └── main.ts             # Punto de entrada
-├── index.html
+│   ├── app-entrypoint.ts   # Setup del app Vue (plugins Vue island)
+│   └── env.d.ts            # Tipado de variables de entorno
+├── tailwind.config.ts
 ├── vite.config.ts
-└── tailwind.config.ts
+├── vercel.json
+└── package.json
 ```
 
 ---
@@ -85,7 +89,7 @@ npm install
 npm run dev
 ```
 
-La aplicación estará disponible en **http://localhost:5173**
+La aplicación estará disponible en **http://localhost:4321**
 
 ---
 
@@ -94,10 +98,16 @@ La aplicación estará disponible en **http://localhost:5173**
 Crea un archivo `.env` en la raíz del proyecto. La integración con Supabase es **opcional**: si no la habilitas, el portafolio funciona con datos de ejemplo.
 
 ```env
-VITE_SUPABASE_URL=tu-url-de-supabase
-VITE_SUPABASE_ANON_KEY=tu-clave-anonima
-VITE_ENABLE_SUPABASE=false
+PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+PUBLIC_SUPABASE_ANON_KEY=tu-anon-key-aqui
+PUBLIC_ENABLE_SUPABASE=true
+PUBLIC_ENABLE_REALTIME=true
+PUBLIC_TURNSTILE_SITE_KEY=tu-turnstile-site-key
+PUBLIC_CV_URL=https://tu-proyecto.supabase.co/storage/v1/object/public/portfolio/document/cv.pdf
+PUBLIC_CONTACT_EMAIL=tu-email@dominio.com
 ```
+
+> **Nota:** las variables con prefijo `PUBLIC_*` son expuestas al navegador porque el cliente de Supabase y el formulario de contacto las necesitan en runtime. La seguridad depende de las políticas RLS de Postgres, no de ocultar estas claves.
 
 ---
 
@@ -106,7 +116,7 @@ VITE_ENABLE_SUPABASE=false
 | Comando | Descripción |
 |---------|-------------|
 | `npm run dev` | Inicia el servidor de desarrollo con recarga en caliente. |
-| `npm run build` | Verifica los tipos y genera la versión de producción en `dist/`. |
+| `npm run build` | Genera la versión de producción en `dist/`. |
 | `npm run preview` | Sirve localmente la versión de producción para revisarla. |
 
 ---
@@ -128,6 +138,6 @@ Desarrollador de Software Full Stack · Venezuela · Remoto global
 
 <div align="center">
 
-Hecho con ❤️ y Vue.
+Hecho con ❤️ y Astro.
 
 </div>

@@ -1,0 +1,175 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'Wilmer Parra Gómez — Desarrollador Full Stack | DevsParra' } = Astro.props;
+
+import '../components/features/styles.css';
+---
+
+<!doctype html>
+<html lang="es" class="dark" id="top">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>{title}</title>
+    <meta name="title" content="Wilmer Parra Gómez — Desarrollador Full Stack | DevsParra" />
+    <meta name="description" content="Desarrollo productos digitales, sistemas internos y aplicaciones con Vue, TypeScript, Laravel y Supabase. Arquitectura limpia, rendimiento y experiencia de usuario. Venezuela · Remoto global." />
+    <meta name="keywords" content="desarrollador full stack, Vue.js, TypeScript, Laravel, Supabase, PHP, Flutter, aplicaciones web, sistemas ERP, automatización, desarrollador remoto Venezuela" />
+    <meta name="author" content="Wilmer Parra Gómez" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="application-name" content="DevsParra" />
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)" />
+    <meta name="geo.region" content="VE" />
+    <meta name="geo.placename" content="Venezuela" />
+    <link rel="canonical" href="https://DevsParra.com/" />
+    <link rel="alternate" hreflang="es" href="https://DevsParra.com/" />
+    <link rel="alternate" hreflang="en" href="https://DevsParra.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://DevsParra.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DevsParra — Wilmer Parra Gómez" />
+    <meta property="og:url" content="https://DevsParra.com/" />
+    <meta property="og:title" content="Wilmer Parra Gómez — Desarrollador Full Stack | DevsParra" />
+    <meta property="og:description" content="Desarrollo productos digitales, sistemas internos y aplicaciones con arquitectura limpia, rendimiento y experiencia de usuario. Venezuela · Remoto global." />
+    <meta property="og:image" content="https://DevsParra.com/images/profile.webp" />
+    <meta property="og:image:alt" content="Wilmer Parra Gómez, desarrollador full stack" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://DevsParra.com/" />
+    <meta name="twitter:title" content="Wilmer Parra Gómez — Desarrollador Full Stack | DevsParra" />
+    <meta name="twitter:description" content="Desarrollo productos digitales, sistemas internos y aplicaciones con arquitectura limpia, rendimiento y experiencia de usuario. Venezuela · Remoto global." />
+    <meta name="twitter:image" content="https://DevsParra.com/images/profile.webp" />
+    <meta name="twitter:image:alt" content="Wilmer Parra Gómez, desarrollador full stack" />
+
+    <link rel="preload" as="image" href="/images/profile.webp" imagesrcset="/images/profile.webp" imagesizes="340px" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/profile.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/profile.png" />
+    <meta name="apple-mobile-web-app-title" content="DevsParra" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <script>
+      window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments) };
+      window.va.l = (new Date).getTime();
+    </script>
+    <script src="https://vitals.vercel-insights.com/vitals.js" async defer></script>
+
+    <script>
+      window.va = window.va || function () { (window.va.q = window.va.q || []).push(arguments) };
+      window.va.l = (new Date).getTime();
+    </script>
+    <script src="https://cdn.vercel-insights.com/script.js" async defer></script>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://DevsParra.com/#person",
+          "name": "Wilmer Parra Gómez",
+          "givenName": "Wilmer",
+          "familyName": "Parra Gómez",
+          "jobTitle": "Desarrollador de Software Full Stack",
+          "description": "Desarrollador full stack especializado en productos digitales, sistemas internos y aplicaciones con arquitectura limpia. Venezuela · Remoto global.",
+          "url": "https://DevsParra.com/",
+          "image": "https://DevsParra.com/images/profile.webp",
+          "email": "wilmerparragomez@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Maracay",
+            "addressRegion": "Aragua",
+            "addressCountry": "VE"
+          },
+          "nationality": {
+            "@type": "Country",
+            "name": "Venezuela"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/",
+            "https://github.com/",
+            "https://www.instagram.com/"
+          ],
+          "knowsAbout": [
+            "Vue.js",
+            "TypeScript",
+            "Laravel",
+            "PHP",
+            "Supabase",
+            "Flutter",
+            "Node.js",
+            "Python",
+            "Desarrollo web",
+            "Aplicaciones móviles",
+            "Automatización",
+            "Sistemas ERP"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://DevsParra.com/#website",
+          "url": "https://DevsParra.com/",
+          "name": "DevsParra — Wilmer Parra Gómez",
+          "inLanguage": "es",
+          "publisher": { "@id": "https://DevsParra.com/#person" }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://DevsParra.com/#service",
+          "name": "DevsParra",
+          "url": "https://DevsParra.com/",
+          "image": "https://DevsParra.com/images/profile.webp",
+          "founder": { "@id": "https://DevsParra.com/#person" },
+          "areaServed": "Worldwide",
+          "priceRange": "$$",
+          "availableLanguage": ["es", "en"],
+          "serviceType": [
+            "Desarrollo web",
+            "Sistemas y ERP",
+            "Aplicaciones móviles",
+            "Gestión de Apps en las tiendas",
+            "Integración de IA",
+            "Automatización",
+            "Consultoría técnica"
+          ]
+        }
+      ]
+    })} />
+  </head>
+  <body class="bg-obsidian text-offWhite">
+    <slot />
+    <noscript>
+      <div style="max-width: 720px; margin: 0 auto; padding: 48px 24px; color: #f5f5f7; font-family: system-ui, sans-serif;">
+        <h1>Wilmer Parra Gómez — Desarrollador de Software Full Stack</h1>
+        <p>
+          Construyo productos digitales, sistemas internos y aplicaciones con arquitectura limpia,
+          rendimiento y experiencia de usuario. Stack: Vue, TypeScript, Laravel, Supabase, PHP y Flutter.
+          Venezuela · Remoto global.
+        </p>
+        <p>
+          Esta página necesita JavaScript para mostrarse por completo. Escríbeme a
+          <a href={`mailto:${import.meta.env.PUBLIC_CONTACT_EMAIL}`} style="color: #ccff00;">{import.meta.env.PUBLIC_CONTACT_EMAIL}</a>.
+        </p>
+      </div>
+    </noscript>
+  </body>
+</html>

@@ -11,8 +11,10 @@ import ServicesSection from '@/components/features/ServicesSection.vue';
 import TechnologiesSection from '@/components/features/TechnologiesSection.vue';
 import SiteFooter from '@/components/layout/SiteFooter.vue';
 import SiteHeader from '@/components/layout/SiteHeader.vue';
+import { useSupabase } from '@/composables/useSupabase';
 
 const { locale } = useI18n();
+const { init: initSupabase } = useSupabase();
 const isDark = ref(true);
 const animationsEnabled = ref(true);
 const scrollDepth = ref(0);
@@ -22,6 +24,8 @@ let motionMedia: MediaQueryList | null = null;
 const parallaxStyle = computed(() => ({
   '--scroll-depth': scrollDepth.value.toFixed(2),
 }));
+
+const fondoBgStyle = "background-image: url('/images/fondo.webp')";
 
 function updateParallaxDepth() {
   scrollDepth.value = window.scrollY;
@@ -54,7 +58,7 @@ watch(
   { immediate: true },
 );
 
-onMounted(() => {
+onMounted(async () => {
   document.documentElement.classList.toggle('dark', isDark.value);
   document.documentElement.lang = locale.value;
   motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -62,6 +66,11 @@ onMounted(() => {
     animationsEnabled.value = false;
   }
   motionMedia.addEventListener('change', handleReducedMotionChange);
+  try {
+    await initSupabase();
+  } catch (err) {
+    console.warn('[App] initSupabase failed:', err);
+  }
 });
 
 onUnmounted(() => {
@@ -77,7 +86,7 @@ onUnmounted(() => {
     :style="parallaxStyle"
   >
     <!-- Global corridor background shared across sections -->
-    <div class="global-bg" aria-hidden="true" />
+    <div class="global-bg" aria-hidden="true" :style="fondoBgStyle" />
 
     <!-- Fluid fog / mist ambience -->
     <div class="fog-fx" aria-hidden="true">

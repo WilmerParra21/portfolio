@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const turnstileToken = ref('');
 const turnstileWidgetId = ref<string | null>(null);
 

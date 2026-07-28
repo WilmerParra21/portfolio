@@ -17,6 +17,7 @@ dist-ssr/
 
 # Vite
 .vite/
+.astro/
 
 # System
 .DS_Store
@@ -43,6 +44,16 @@ tmp/
 
 # TypeScript
 tsconfig.node.tsbuildinfo
-
+.kilo
 # Vercel
 .vercel/
+
+# Brackets
+__MACOSX/
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# Claude
+.claude/

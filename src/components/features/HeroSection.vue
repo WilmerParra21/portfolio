@@ -51,13 +51,17 @@ const socialLinks = computed(() =>
       };
     }),
 );
+
+const heroBgStyle = "background-image: url('/images/hero.webp')";
+const profileWebpSrc = '/images/profile.webp';
+const profilePngSrc = '/images/profile.png';
 </script>
 
 <template>
   <section id="top" class="relative flex min-h-[100svh] flex-col overflow-hidden bg-obsidian">
     <!-- Background texture: metallic marble -->
     <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-[url('/images/hero.webp')] bg-cover bg-center bg-no-repeat opacity-[0.42]" />
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.42]" :style="heroBgStyle" />
       <div class="absolute inset-0 bg-[radial-gradient(90%_80%_at_28%_45%,transparent_0%,rgba(5,5,5,0.45)_55%,rgba(5,5,5,0.88)_100%)]" />
       <div class="absolute inset-0 bg-gradient-to-r from-transparent via-obsidian/35 to-obsidian/75" />
       <div class="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-transparent to-obsidian" />
@@ -79,9 +83,9 @@ const socialLinks = computed(() =>
                 <!-- Inner dark border -->
                 <div class="h-full w-full rounded-full bg-gradient-to-br from-gray-800 via-gray-900 to-black p-[5px]">
                   <picture>
-                    <source srcset="/images/profile.webp" type="image/webp" />
+                    <source :srcset="profileWebpSrc" type="image/webp" />
                     <img
-                      src="/images/profile.png"
+                      :src="profilePngSrc"
                       alt="Wilmer Parra Gómez"
                       class="h-full w-full rounded-full object-cover"
                       loading="eager"
