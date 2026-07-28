@@ -6,6 +6,7 @@ interface Props {
 const { title = 'Wilmer Parra Gómez — Desarrollador Full Stack | DevsParra' } = Astro.props;
 
 import '../components/features/styles.css';
+import SpeedInsights from '@vercel/speed-insights/astro';
 ---
 
 <!doctype html>
@@ -156,6 +157,7 @@ import '../components/features/styles.css';
     })} />
   </head>
   <body class="bg-obsidian text-offWhite">
+    <SpeedInsights />
     <slot />
     <noscript>
       <div style="max-width: 720px; margin: 0 auto; padding: 48px 24px; color: #f5f5f7; font-family: system-ui, sans-serif;">
