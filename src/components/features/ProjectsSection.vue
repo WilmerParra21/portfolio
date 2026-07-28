@@ -117,9 +117,9 @@ function next() {
                     class="h-auto w-full max-h-[520px] rounded-[1.85rem] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                     loading="lazy"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/70 to-obsidian/50 transition-opacity duration-500 group-hover:opacity-0" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-obsidian/40 via-obsidian/30 to-obsidian/20 md:from-obsidian/90 md:via-obsidian/70 md:to-obsidian/50 md:transition-opacity md:duration-500 md:group-hover:opacity-0" />
                   <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transition-all duration-500 group-hover:via-volt/40" />
-                  <div class="absolute inset-0 flex items-center justify-center transition-opacity duration-500 group-hover:opacity-0">
+                  <div class="absolute inset-0 hidden items-center justify-center opacity-100 transition-opacity duration-500 md:flex md:group-hover:opacity-0">
                     <span class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-obsidian/60 px-5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-offWhite/85 backdrop-blur-sm transition-colors group-hover:border-volt/40 group-hover:text-volt">
                       <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

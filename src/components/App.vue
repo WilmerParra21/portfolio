@@ -69,7 +69,7 @@ onMounted(async () => {
   try {
     await initSupabase();
   } catch (err) {
-    console.warn('[App] initSupabase failed:', err);
+    // Silently ignore Supabase init errors
   }
 });
 

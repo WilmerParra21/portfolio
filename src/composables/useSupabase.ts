@@ -34,17 +34,14 @@ async function createSupabase(): Promise<SupabaseClient | null> {
   if (supabaseClient) return supabaseClient;
 
   const enabled = import.meta.env.PUBLIC_ENABLE_SUPABASE === 'true';
-  console.log('[Supabase Debug] PUBLIC_ENABLE_SUPABASE:', import.meta.env.PUBLIC_ENABLE_SUPABASE, 'enabled:', enabled);
   if (!enabled) return null;
 
   const url = import.meta.env.PUBLIC_SUPABASE_URL;
   const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-  console.log('[Supabase Debug] URL present:', !!url, 'KEY present:', !!key);
   if (!url || !key) return null;
 
   const { createClient } = await import('@supabase/supabase-js');
   supabaseClient = createClient(url, key);
-  console.log('[Supabase Debug] Client created successfully');
   return supabaseClient;
 }
 
@@ -57,7 +54,6 @@ async function fetchFromSupabase<T>(
 ): Promise<T[] | null> {
   const client = await createSupabase();
   if (!client) {
-    console.warn(`[Supabase Debug] Client is null for table "${table}"`);
     return null;
   }
 
@@ -72,14 +68,9 @@ async function fetchFromSupabase<T>(
       query = query.limit(options.limit);
     }
     const { data, error } = await query;
-    if (error) {
-      console.warn(`[Supabase Debug] Error fetching "${table}":`, error);
-      throw error;
-    }
-    console.log(`[Supabase Debug] Fetched ${table}:`, data?.length ?? 0, 'rows');
+    if (error) throw error;
     return data as T[];
   } catch (error) {
-    console.warn(`[Supabase] Failed to fetch ${table}:`, error);
     return null;
   }
 }
@@ -115,7 +106,7 @@ async function subscribeToRealtime() {
 
     realtimeChannels.push(channel);
   } catch (error) {
-    console.warn('[Supabase] Realtime subscription failed:', error);
+    // Silently ignore realtime subscription errors
   }
 }
 
@@ -223,7 +214,6 @@ function loadSampleProjects(): Project[] {
 }
 
 async function loadSocialLinks() {
-  console.log('[Supabase Debug] loadSocialLinks called, current count:', portfolioState.social_links.length);
   if (portfolioState.social_links.length > 0) return;
 
   const data = await fetchFromSupabase<SocialLink>('social_links', {
@@ -231,17 +221,14 @@ async function loadSocialLinks() {
   });
 
   if (data && data.length > 0) {
-    console.log('[Supabase Debug] Loading social_links from Supabase:', data.length);
     portfolioState.social_links.push(...data);
     return;
   }
 
-  console.log('[Supabase Debug] Loading social_links from samples');
   portfolioState.social_links.push(...loadSampleSocialLinks());
 }
 
 async function loadTechnologies() {
-  console.log('[Supabase Debug] loadTechnologies called, current count:', portfolioState.technologies.length);
   if (portfolioState.technologies.length > 0) return;
 
   const data = await fetchFromSupabase<Technology>('technologies', {
@@ -252,12 +239,10 @@ async function loadTechnologies() {
   });
 
   if (data && data.length > 0) {
-    console.log('[Supabase Debug] Loading technologies from Supabase:', data.length);
     portfolioState.technologies.push(...data);
     return;
   }
 
-  console.log('[Supabase Debug] Loading technologies from samples');
   portfolioState.technologies.push(...loadSampleTechnologies());
 }
 
@@ -267,7 +252,6 @@ function loadTools() {
 }
 
 async function loadProjects() {
-  console.log('[Supabase Debug] loadProjects called, current count:', portfolioState.projects.length);
   if (portfolioState.projects.length > 0) return;
 
   const data = await fetchFromSupabase<Project>('projects', {
@@ -275,12 +259,10 @@ async function loadProjects() {
   });
 
   if (data && data.length > 0) {
-    console.log('[Supabase Debug] Loading projects from Supabase:', data.length);
     portfolioState.projects.push(...data);
     return;
   }
 
-  console.log('[Supabase Debug] Loading projects from samples');
   portfolioState.projects.push(...loadSampleProjects());
 }
 
@@ -316,7 +298,6 @@ async function submitContactForm(payload: ContactForm): Promise<void> {
 
       return;
     } catch (error) {
-      console.warn('[Supabase Edge Function] Contact form submission failed:', error);
       throw error;
     }
   }
@@ -337,7 +318,6 @@ async function submitContactForm(payload: ContactForm): Promise<void> {
       if (error) throw error;
       return;
     } catch (error) {
-      console.warn('[Supabase] Contact form submission failed:', error);
       throw error;
     }
   }
@@ -345,7 +325,6 @@ async function submitContactForm(payload: ContactForm): Promise<void> {
 
 async function initSupabase() {
   if (typeof window === 'undefined') return;
-  console.log('[Supabase Debug] initSupabase running in client');
   await loadSocialLinks();
   await loadTechnologies();
   loadTools();
