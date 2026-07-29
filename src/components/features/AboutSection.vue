@@ -6,11 +6,11 @@ const { t } = useI18n();
 const professionalPoints = [
   {
     title: 'Experiencia',
-    description: 'Más de 5 años construyendo productos web y móviles.',
+    description: 'Más de 5 años desarrollando aplicaciones web y móviles.',
   },
   {
     title: 'Enfoque',
-    description: 'Arquitectura limpia,enfocado en la experiencia de usuario y código escalable como base de cada entrega.',
+    description: 'Arquitectura limpia, enfocado en mejorar la experiencia del usuario y hacer código escalable como base de cada entrega.',
   },
   {
     title: 'Metodología',
@@ -18,7 +18,7 @@ const professionalPoints = [
   },
   {
     title: 'Stack',
-    description: 'Uso tecnologías en base a la mejor solución, no por la tendencia.',
+    description: 'Uso tecnologías en base a la mejor solución, no a la tendencia.',
   },
 ];
 </script>
@@ -39,7 +39,7 @@ const professionalPoints = [
           </h2>
 
           <p class="max-w-md text-[16px] leading-[1.75] text-offWhite/65">
-            Desarrollo productos digitales con arquitectura limpia, foco en el usuario y entregas sostenibles en el tiempo. Cada proyecto es una decisión técnica alineada al negocio.
+            Desarrollo productos digitales con arquitectura limpia y escalable, priorizando la satisfacción del usuario y realizando entregas sostenibles en el periodos de tiempo establecidos. Cada proyecto es una decisión técnica alineada al negocio.
           </p>
         </div>
 
